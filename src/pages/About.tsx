@@ -6,7 +6,7 @@ export const About = () => {
     <div className="pb-20">
       <section className="relative h-[40vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/chaosgf/1.jpg" alt="Toàn Phát" className="w-full h-full object-cover" />
+          <img src="assets/chaosgf/1.jpg" alt="Toàn Phát" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/30" />
         </div>
 

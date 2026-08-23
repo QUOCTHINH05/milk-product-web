@@ -12,7 +12,7 @@ export const HomePage = () => {
       <section className="relative h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="../../../assets/Logo-BG.png"
+            src="assets/Logo-BG.png"
             alt="Dairy Farm"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
