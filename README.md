@@ -56,7 +56,3 @@ npm install -D @types/react @types/react-dom
 - Add a lightbox/swipe gallery for mobile
 - Load product data from a JSON file or headless CMS
 - Add cart/wishlist state and persistence
-
----
-
-If you'd like, I can: update this README with screenshots, add usage examples, or include contribution guidelines — tell me which you'd prefer.
