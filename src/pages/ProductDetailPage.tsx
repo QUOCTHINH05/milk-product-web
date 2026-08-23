@@ -9,6 +9,7 @@ export const ProductDetailPage = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   
   const product = PRODUCTS.find(p => p.id === productId);
   const category = CATEGORIES.find(c => c.id === product?.categoryId);
@@ -20,6 +21,10 @@ export const ProductDetailPage = () => {
       return () => clearTimeout(timer);
     }
   }, [product, navigate]);
+
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [productId]);
 
   if (!product) {
     return (
@@ -55,21 +60,33 @@ export const ProductDetailPage = () => {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
-            <div className="aspect-square rounded-[32px] overflow-hidden bg-white border border-dairy-ink/5">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="grid grid-cols-4 gap-4">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className={`aspect-square rounded-2xl overflow-hidden border-2 ${i === 0 ? 'border-dairy-green' : 'border-transparent'} cursor-pointer opacity-70 hover:opacity-100 transition-all`}>
-                  <img src={product.image} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                </div>
-              ))}
-            </div>
+            {(() => {
+              const images = product.images && product.images.length > 0 ? product.images : [product.image];
+              return (
+                <>
+                  <div className="aspect-square rounded-[32px] overflow-hidden bg-white border border-dairy-ink/5">
+                    <img
+                      src={images[selectedIndex]}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-4 gap-4">
+                    {images.slice(0, 8).map((src, i) => (
+                      <div
+                        key={src + i}
+                        onClick={() => setSelectedIndex(i)}
+                        className={`aspect-square rounded-2xl overflow-hidden border-2 cursor-pointer transition-all ${i === selectedIndex ? 'border-dairy-green opacity-100' : 'border-transparent opacity-70 hover:opacity-100'}`}
+                      >
+                        <img src={src} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              );
+            })()}
           </motion.div>
 
           {/* Product Info */}

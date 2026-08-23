@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
 import { ArrowRight, ShieldCheck, Truck, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CATEGORIES } from '../constants';
+import { CATEGORIES, PRODUCTS } from '../constants';
 import { CategoryCard } from '../components/CategoryCard';
+import { ProductCard } from '../components/ProductCard';
 
 export const HomePage = () => {
   return (
@@ -119,6 +120,23 @@ export const HomePage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {CATEGORIES.map((category, index) => (
             <CategoryCard key={category.id} category={category} index={index} />
+          ))}
+        </div>
+      </section>
+
+      {/* Toàn Phát Products */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <span className="text-dairy-green font-bold text-xs uppercase tracking-widest mb-3 block">Toàn Phát</span>
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold">Sản phẩm nổi bật</h2>
+          </div>
+          <a href="#" className="text-sm font-bold text-dairy-green">Xem tất cả</a>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
+          {PRODUCTS.filter(p => p.categoryId === 'toan-phat').map((p, i) => (
+            <ProductCard key={p.id} product={p} index={i} />
           ))}
         </div>
       </section>

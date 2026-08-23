@@ -20,7 +20,7 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
       <Link to={`/product/${product.id}`} className="block">
         <div className="aspect-square overflow-hidden relative">
           <img
-            src={product.image}
+            src={product.images?.[0] ?? product.image}
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             referrerPolicy="no-referrer"

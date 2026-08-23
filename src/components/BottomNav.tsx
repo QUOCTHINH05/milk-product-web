@@ -1,4 +1,4 @@
-import { Home, LayoutGrid, ShoppingBag, User, Heart } from 'lucide-react';
+import { Home, LayoutGrid, ShoppingBag, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 
@@ -7,17 +7,18 @@ export const BottomNav = () => {
   
   const navItems = [
     { icon: <Home size={22} />, label: 'Trang chủ', path: '/' },
-    { icon: <LayoutGrid size={22} />, label: 'Danh mục', path: '/products' },
+    { icon: <LayoutGrid size={22} />, label: 'Danh mục', path: '/category/toan-phat' },
     { icon: <ShoppingBag size={22} />, label: 'Giỏ hàng', path: '/cart' },
-    { icon: <Heart size={22} />, label: 'Yêu thích', path: '/wishlist' },
-    { icon: <User size={22} />, label: 'Tài khoản', path: '/profile' },
+    { icon: <Mail size={22} />, label: 'Liên hệ', path: '/contact' },
   ];
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-t border-dairy-ink/5 pb-safe-area-inset-bottom">
       <div className="flex justify-around items-center h-16 px-2">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
+          const isActive = item.path === '/category/toan-phat'
+            ? location.pathname.startsWith('/category')
+            : location.pathname === item.path;
           return (
             <Link
               key={item.path}

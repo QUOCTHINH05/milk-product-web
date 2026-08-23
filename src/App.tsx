@@ -6,6 +6,8 @@ import { BottomNav } from './components/BottomNav';
 import { HomePage } from './pages/HomePage';
 import { CategoryPage } from './pages/CategoryPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
+import { About } from './pages/About';
+import { Contact } from './pages/Contact';
 import { motion, AnimatePresence } from 'motion/react';
 
 // Scroll to top on route change
@@ -45,6 +47,8 @@ export default function App() {
             <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
             <Route path="/category/:categoryId" element={<PageWrapper><CategoryPage /></PageWrapper>} />
             <Route path="/product/:productId" element={<PageWrapper><ProductDetailPage /></PageWrapper>} />
+            <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+            <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
             {/* Fallback for other routes */}
             <Route path="*" element={
               <div className="min-h-[60vh] flex flex-col items-center justify-center">

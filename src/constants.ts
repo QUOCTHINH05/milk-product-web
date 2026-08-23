@@ -2,82 +2,89 @@ import { Category, Product } from './types';
 
 export const CATEGORIES: Category[] = [
   {
-    id: 'feder-nutrition',
-    name: 'Sữa Feder Nutrition',
-    description: 'Nguồn dinh dưỡng thuần khiết từ những trang trại xanh mướt.',
-    image: '../../assets/feder-nutrition.jpg',
-    rating: 4.9
-  },
-  {
-    id: 'procare-usmilk',
-    name: 'Sữa Procare USMilk',
-    description: 'Hương vị thơm ngon, hỗ trợ tiêu hóa và tăng cường miễn dịch.',
-    image: '../../assets/procare-usmilk.jpg',
-    rating: 4.8
-  },
-  {
-    id: 'chao-tuoi-sgf',
-    name: 'Cháo tươi SGF',
-    description: 'Sự kết hợp hoàn hảo giữa các loại hạt cao cấp và công nghệ hiện đại.',
-    image: '../../assets/chao-tuoi-sgf.jpg',
-    rating: 4.7
-  },
-  {
-    id: 'yen-my-khanh',
-    name: 'Yến sào cao cấp Mỹ Khánh',
-    description: 'Độ béo ngậy đặc trưng, làm dậy vị cho mọi món ăn của bạn.',
-    image: '../../assets/yen-my-khanh.jpg',
-    rating: 4.9
-  },
-  {
-    id: 'yen-khanh-hoa',
-    name: 'Yến Vipnest Khánh Hòa',
-    description: 'Giải pháp dinh dưỡng tối ưu cho từng giai đoạn phát triển.',
-    image: '../../assets/yen-khanh-hoa.jpg',
-    rating: 4.6
-  },
-  {
-    id: 'yen-happy',
-    name: 'Yến Happy',
-    description: 'Sản phẩm được yêu thích bởi hương vị thơm ngon và chất lượng tuyệt vời.',
-    image: '../../assets/yen-happy.jpg',
+    id: 'toan-phat',
+    name: 'Toàn Phát',
+    description: 'Nhà phân phối lẻ Toàn Phát — chuyên cung cấp các sản phẩm dinh dưỡng và yến sào.',
+    image: '/assets/Logo-BG.png',
     rating: 4.8
   }
 ];
 
 export const PRODUCTS: Product[] = [
-  // Sữa Tươi Nguyên Chất
-  { id: 'st1', categoryId: 'feder-nutrition', name: 'Sữa Tươi Thanh Trùng 1L', price: 45000, image: 'https://images.unsplash.com/photo-1563636619-e9107da5a199?auto=format&fit=crop&q=80&w=400', description: 'Sữa tươi 100% nguyên chất, không đường.' },
-  { id: 'st2', categoryId: 'feder-nutrition', name: 'Sữa Tươi Tiệt Trùng Ít Đường', price: 38000, image: 'https://images.unsplash.com/photo-1550583724-1255818c0533?auto=format&fit=crop&q=80&w=400', description: 'Hương vị nhẹ nhàng, dễ uống cho cả gia đình.' },
-  { id: 'st3', categoryId: 'feder-nutrition', name: 'Sữa Tươi Vị Dâu 180ml', price: 12000, image: 'https://images.unsplash.com/photo-1553902861-428a8b2ee23b?auto=format&fit=crop&q=80&w=400', description: 'Sự kết hợp ngọt ngào giữa sữa và dâu tươi.' },
-  { id: 'st4', categoryId: 'feder-nutrition', name: 'Sữa Tươi Vị Socola 180ml', price: 12000, image: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&q=80&w=400', description: 'Đậm đà vị socola nguyên chất.' },
-  { id: 'st5', categoryId: 'feder-nutrition', name: 'Sữa Tươi Tách Béo', price: 42000, image: 'https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&q=80&w=400', description: 'Giảm 99% chất béo, giữ trọn canxi.' },
-
-  // Sữa Chua & Phô Mai
-  { id: 'sc1', categoryId: 'sua-chua-dairy', name: 'Sữa Chua Có Đường', price: 8000, image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=400', description: 'Lên men tự nhiên, mịn màng.' },
-  { id: 'sc2', categoryId: 'sua-chua-dairy', name: 'Sữa Chua Hy Lạp', price: 25000, image: 'https://images.unsplash.com/photo-1571212515416-fef01fc43637?auto=format&fit=crop&q=80&w=400', description: 'Giàu protein, kết cấu đặc mịn.' },
-  { id: 'sc3', categoryId: 'sua-chua-dairy', name: 'Phô Mai Lát 200g', price: 55000, image: 'https://images.unsplash.com/photo-1485962391945-447a3a4511b2?auto=format&fit=crop&q=80&w=400', description: 'Tiện lợi cho bữa sáng kẹp bánh mì.' },
-  { id: 'sc4', categoryId: 'sua-chua-dairy', name: 'Phô Mai Viên Cho Bé', price: 45000, image: 'https://images.unsplash.com/photo-1552767059-ce182ead6c1b?auto=format&fit=crop&q=80&w=400', description: 'Bổ sung canxi và vitamin D.' },
-  { id: 'sc5', categoryId: 'sua-chua-dairy', name: 'Sữa Chua Uống Vị Cam', price: 15000, image: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&q=80&w=400', description: 'Tươi mát, sảng khoái.' },
-
-  // Sữa Hạt Dinh Dưỡng
-  { id: 'sh1', categoryId: 'sua-hat-dinh-duong', name: 'Sữa Hạnh Nhân Không Đường', price: 65000, image: 'https://images.unsplash.com/photo-1596450514735-2d002f0434b4?auto=format&fit=crop&q=80&w=400', description: 'Tốt cho tim mạch và làn da.' },
-  { id: 'sh2', categoryId: 'sua-hat-dinh-duong', name: 'Sữa Óc Chó 1L', price: 75000, image: 'https://images.unsplash.com/photo-1550583724-1255818c0533?auto=format&fit=crop&q=80&w=400', description: 'Tăng cường trí nhớ và sức khỏe não bộ.' },
-  { id: 'sh3', categoryId: 'sua-hat-dinh-duong', name: 'Sữa Đậu Nành Nguyên Chất', price: 25000, image: 'https://images.unsplash.com/photo-1579619173026-24751921b4d4?auto=format&fit=crop&q=80&w=400', description: 'Nguồn đạm thực vật dồi dào.' },
-  { id: 'sh4', categoryId: 'sua-hat-dinh-duong', name: 'Sữa Hạt Sen 500ml', price: 35000, image: 'https://images.unsplash.com/photo-1596450514735-2d002f0434b4?auto=format&fit=crop&q=80&w=400', description: 'Giúp ngủ ngon và thư giãn.' },
-  { id: 'sh5', categoryId: 'sua-hat-dinh-duong', name: 'Sữa Gạo Lứt Huyết Rồng', price: 30000, image: 'https://images.unsplash.com/photo-1596450514735-2d002f0434b4?auto=format&fit=crop&q=80&w=400', description: 'Giàu chất xơ và vitamin nhóm B.' },
-
-  // Bơ & Kem Sữa
-  { id: 'bk1', categoryId: 'bo-kem-cao-cap', name: 'Bơ Lạt Tự Nhiên 250g', price: 85000, image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&q=80&w=400', description: 'Lý tưởng cho làm bánh và nấu ăn.' },
-  { id: 'bk2', categoryId: 'bo-kem-cao-cap', name: 'Kem Tươi Whipping Cream', price: 120000, image: 'https://images.unsplash.com/photo-1553902861-428a8b2ee23b?auto=format&fit=crop&q=80&w=400', description: 'Độ béo 35%, đánh bông mịn màng.' },
-  { id: 'bk3', categoryId: 'bo-kem-cao-cap', name: 'Bơ Mặn Cao Cấp', price: 90000, image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&q=80&w=400', description: 'Vị mặn nhẹ, thơm mùi sữa.' },
-  { id: 'bk4', categoryId: 'bo-kem-cao-cap', name: 'Kem Sữa Nấu Ăn Cooking Cream', price: 110000, image: 'https://images.unsplash.com/photo-1553902861-428a8b2ee23b?auto=format&fit=crop&q=80&w=400', description: 'Chịu nhiệt tốt, không bị tách lớp.' },
-  { id: 'bk5', categoryId: 'bo-kem-cao-cap', name: 'Phô Mai Kem Cream Cheese', price: 95000, image: 'https://images.unsplash.com/photo-1485962391945-447a3a4511b2?auto=format&fit=crop&q=80&w=400', description: 'Mềm mượt, vị chua nhẹ đặc trưng.' },
-
-  // Sữa Công Thức
-  { id: 'sct1', categoryId: 'sua-cong-thuc', name: 'Sữa Bột Cho Bé 0-6 Tháng', price: 450000, image: 'https://images.unsplash.com/photo-1523473827533-2a64d0d36748?auto=format&fit=crop&q=80&w=400', description: 'Công thức gần giống sữa mẹ nhất.' },
-  { id: 'sct2', categoryId: 'sua-cong-thuc', name: 'Sữa Bột Phát Triển Chiều Cao', price: 420000, image: 'https://images.unsplash.com/photo-1523473827533-2a64d0d36748?auto=format&fit=crop&q=80&w=400', description: 'Bổ sung Canxi và Vitamin K2.' },
-  { id: 'sct3', categoryId: 'sua-cong-thuc', name: 'Sữa Bột Cho Người Cao Tuổi', price: 550000, image: 'https://images.unsplash.com/photo-1523473827533-2a64d0d36748?auto=format&fit=crop&q=80&w=400', description: 'Hỗ trợ xương khớp và tim mạch.' },
-  { id: 'sct4', categoryId: 'sua-cong-thuc', name: 'Sữa Bột Cho Bà Bầu', price: 480000, image: 'https://images.unsplash.com/photo-1523473827533-2a64d0d36748?auto=format&fit=crop&q=80&w=400', description: 'Bổ sung Axit Folic và DHA.' },
-  { id: 'sct5', categoryId: 'sua-cong-thuc', name: 'Sữa Bột Tăng Cân Cho Bé', price: 430000, image: 'https://images.unsplash.com/photo-1523473827533-2a64d0d36748?auto=format&fit=crop&q=80&w=400', description: 'Giàu năng lượng và lợi khuẩn.' },
+  {
+    id: 'tp-chao-sgf',
+    categoryId: 'toan-phat',
+    name: 'Cháo SGF',
+    price: 45000,
+    image: '/assets/chaosgf/1.jpg',
+    images: [
+      '/assets/chaosgf/1.jpg','/assets/chaosgf/2.jpg','/assets/chaosgf/3.jpg','/assets/chaosgf/4.jpg','/assets/chaosgf/5.jpg','/assets/chaosgf/6.jpg','/assets/chaosgf/7.jpg','/assets/chaosgf/8.jpg','/assets/chaosgf/9.jpg','/assets/chaosgf/10.jpg','/assets/chaosgf/11.jpg','/assets/chaosgf/12.jpg','/assets/chaosgf/13.jpg','/assets/chaosgf/14.jpg','/assets/chaosgf/15.jpg','/assets/chaosgf/16.jpg','/assets/chaosgf/17.jpg','/assets/chaosgf/18.jpg','/assets/chaosgf/19.jpg','/assets/chaosgf/20.jpg','/assets/chaosgf/21.jpg','/assets/chaosgf/22.jpg','/assets/chaosgf/23.jpg','/assets/chaosgf/24.jpg'
+    ],
+    description: 'Cháo dinh dưỡng thơm ngon, dễ tiêu, phù hợp cho mọi lứa tuổi.'
+  },
+  {
+    id: 'tp-sua-firo',
+    categoryId: 'toan-phat',
+    name: 'Sữa Firo',
+    price: 58000,
+    image: '/assets/firo/1.jpg',
+    images: [
+      '/assets/firo/1.jpg','/assets/firo/2.jpg','/assets/firo/3.jpg','/assets/firo/4.jpg','/assets/firo/5.jpg','/assets/firo/6.jpg','/assets/firo/7.jpg','/assets/firo/8.jpg','/assets/firo/9.jpg','/assets/firo/10.jpg','/assets/firo/11.jpg'
+    ],
+    description: 'Sữa dinh dưỡng Firo, vị thơm, giàu canxi và vitamin.'
+  },
+  {
+    id: 'tp-goldenfarm',
+    categoryId: 'toan-phat',
+    name: 'Sữa tươi Goldfarm',
+    price: 49000,
+    image: '/assets/goldenfarm/1.jpg',
+    images: ['/assets/goldenfarm/1.jpg','/assets/goldenfarm/2.jpg','/assets/goldenfarm/3.jpg','/assets/goldenfarm/4.jpg'],
+    description: 'Sữa tươi nguyên chất Goldfarm, nguồn dinh dưỡng tinh khiết từ trang trại.'
+  },
+  {
+    id: 'tp-natonestkh',
+    categoryId: 'toan-phat',
+    name: 'Yến sào Khánh Hòa Natonest',
+    price: 1200000,
+    image: '/assets/natonestkh/1.jpg',
+    images: ['/assets/natonestkh/1.jpg','/assets/natonestkh/2.jpg','/assets/natonestkh/3.jpg','/assets/natonestkh/4.jpg','/assets/natonestkh/5.jpg','/assets/natonestkh/6.jpg','/assets/natonestkh/7.jpg'],
+    description: 'Yến sào đặc sản Khánh Hòa, sạch, đảm bảo chất lượng dinh dưỡng cao.'
+  },
+  {
+    id: 'tp-tranest',
+    categoryId: 'toan-phat',
+    name: 'Tranest',
+    price: 350000,
+    image: '/assets/tranest/1.jpg',
+    images: ['/assets/tranest/1.jpg','/assets/tranest/2.jpg','/assets/tranest/3.jpg','/assets/tranest/4.jpg','/assets/tranest/5.jpg','/assets/tranest/6.jpg','/assets/tranest/7.jpg','/assets/tranest/8.jpg','/assets/tranest/9.jpg','/assets/tranest/10.jpg'],
+    description: 'Sản phẩm Tranest chất lượng cao, phù hợp làm quà tặng và sử dụng hằng ngày.'
+  },
+  {
+    id: 'tp-yen-my-khanh',
+    categoryId: 'toan-phat',
+    name: 'Yến sào Mỹ Khánh',
+    price: 1350000,
+    image: '/assets/yenmykhanh/1.jpg',
+    images: ['/assets/yenmykhanh/1.jpg','/assets/yenmykhanh/2.jpg','/assets/yenmykhanh/3.jpg','/assets/yenmykhanh/4.jpg','/assets/yenmykhanh/5.jpg','/assets/yenmykhanh/6.jpg','/assets/yenmykhanh/7.jpg','/assets/yenmykhanh/8.jpg','/assets/yenmykhanh/9.jpg','/assets/yenmykhanh/10.jpg','/assets/yenmykhanh/11.jpg','/assets/yenmykhanh/12.jpg'],
+    description: 'Yến sào Mỹ Khánh cao cấp, hương vị tự nhiên, giàu protein và khoáng chất.'
+  },
+  {
+    id: 'tp-takazumi',
+    categoryId: 'toan-phat',
+    name: 'Tã Kazumi',
+    price: 220000,
+    image: '/assets/takazumi/1.jpg',
+    images: ['/assets/takazumi/1.jpg','/assets/takazumi/2.jpg','/assets/takazumi/3.jpg','/assets/takazumi/4.jpg','/assets/takazumi/5.jpg','/assets/takazumi/6.jpg','/assets/takazumi/7.jpg','/assets/takazumi/8.jpg','/assets/takazumi/9.jpg','/assets/takazumi/10.jpg','/assets/takazumi/11.jpg','/assets/takazumi/12.jpg','/assets/takazumi/13.jpg'],
+    description: 'Tã Kazumi mềm mại, thấm hút tốt, bảo vệ làn da bé.'
+  },
+  {
+    id: 'tp-yumisun',
+    categoryId: 'toan-phat',
+    name: 'Tã Yumisun',
+    price: 200000,
+    image: '/assets/tayumisun/1.jpg',
+    images: ['/assets/tayumisun/1.jpg','/assets/tayumisun/2.jpg','/assets/tayumisun/3.jpg','/assets/tayumisun/4.jpg','/assets/tayumisun/5.jpg','/assets/tayumisun/6.jpg','/assets/tayumisun/7.jpg','/assets/tayumisun/8.jpg'],
+    description: 'Tã Yumisun thiết kế ôm vừa vặn, an toàn cho bé.'
+  }
 ];

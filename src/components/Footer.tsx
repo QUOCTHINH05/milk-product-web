@@ -13,7 +13,7 @@ export const Footer = () => {
                 <Milk size={24} />
               </div>
               <span className="font-serif text-2xl font-bold tracking-tight">
-                Dairy<span className="text-dairy-green">Delight</span>
+                Toàn<span className="text-dairy-green">Phát</span>
               </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed">
@@ -37,7 +37,7 @@ export const Footer = () => {
             <h4 className="font-serif text-lg font-semibold mb-6">Liên Kết Nhanh</h4>
             <ul className="space-y-4 text-sm text-white/60">
               <li><Link to="/" className="hover:text-white transition-colors">Trang Chủ</Link></li>
-              <li><Link to="/products" className="hover:text-white transition-colors">Tất Cả Sản Phẩm</Link></li>
+              <li><Link to="/category/toan-phat" className="hover:text-white transition-colors">Sản Phẩm Toàn Phát</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">Về Chúng Tôi</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Liên Hệ</Link></li>
               <li><Link to="/policy" className="hover:text-white transition-colors">Chính Sách Giao Hàng</Link></li>
@@ -47,13 +47,21 @@ export const Footer = () => {
           {/* Categories */}
           <div>
             <h4 className="font-serif text-lg font-semibold mb-6">Danh Mục</h4>
-            <ul className="space-y-4 text-sm text-white/60">
-              <li><Link to="/category/tuoi-nguyen-chat" className="hover:text-white transition-colors">Sữa Tươi</Link></li>
-              <li><Link to="/category/sua-chua-dairy" className="hover:text-white transition-colors">Sữa Chua & Phô Mai</Link></li>
-              <li><Link to="/category/sua-hat-dinh-duong" className="hover:text-white transition-colors">Sữa Hạt</Link></li>
-              <li><Link to="/category/bo-kem-cao-cap" className="hover:text-white transition-colors">Bơ & Kem</Link></li>
-              <li><Link to="/category/sua-cong-thuc" className="hover:text-white transition-colors">Sữa Công Thức</Link></li>
-            </ul>
+            <div className="grid grid-cols-2 gap-4 text-sm text-white/60">
+              <ul className="space-y-4">
+                <li><Link to="/product/tp-chao-sgf" className="hover:text-white transition-colors">Cháo SGF</Link></li>
+                <li><Link to="/product/tp-sua-firo" className="hover:text-white transition-colors">Sữa Firo</Link></li>
+                <li><Link to="/product/tp-goldenfarm" className="hover:text-white transition-colors">Sữa tươi Goldfarm</Link></li>
+                <li><Link to="/product/tp-natonestkh" className="hover:text-white transition-colors">Yến sào Natonest</Link></li>
+              </ul>
+
+              <ul className="space-y-4">
+                <li><Link to="/product/tp-tranest" className="hover:text-white transition-colors">Tranest</Link></li>
+                <li><Link to="/product/tp-yen-my-khanh" className="hover:text-white transition-colors">Yến sào Mỹ Khánh</Link></li>
+                <li><Link to="/product/tp-takazumi" className="hover:text-white transition-colors">Tã Kazumi</Link></li>
+                <li><Link to="/product/tp-yumisun" className="hover:text-white transition-colors">Tã Yumisun</Link></li>
+              </ul>
+            </div>
           </div>
 
           {/* Contact */}

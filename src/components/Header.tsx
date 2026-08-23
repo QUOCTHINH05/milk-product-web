@@ -9,10 +9,17 @@ export const Header = () => {
 
   const navLinks = [
     { name: 'Trang Chủ', path: '/' },
-    { name: 'Sản Phẩm', path: '/products' },
+    { name: 'Sản Phẩm', path: '/category/toan-phat' },
     { name: 'Về Chúng Tôi', path: '/about' },
     { name: 'Liên Hệ', path: '/contact' },
   ];
+
+  const isActive = (path: string) => {
+    if (path.startsWith('/category')) {
+      return location.pathname.startsWith('/category');
+    }
+    return location.pathname === path;
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-dairy-cream/80 backdrop-blur-lg border-b border-dairy-ink/5">
@@ -24,7 +31,7 @@ export const Header = () => {
               <Milk size={24} />
             </div>
             <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-dairy-ink">
-              Dairy<span className="text-dairy-green">Delight</span>
+              Toàn<span className="text-dairy-green">Phát</span>
             </span>
           </Link>
 
@@ -34,7 +41,7 @@ export const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`nav-link ${location.pathname === link.path ? 'text-dairy-green after:w-full' : 'text-dairy-ink/70'}`}
+                className={`nav-link ${isActive(link.path) ? 'text-dairy-green after:w-full' : 'text-dairy-ink/70'}`}
               >
                 {link.name}
               </Link>
@@ -77,7 +84,7 @@ export const Header = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-4 text-base font-medium text-dairy-ink hover:bg-dairy-blue hover:text-dairy-green rounded-lg transition-colors"
+                  className={`block px-3 py-4 text-base font-medium rounded-lg transition-colors ${isActive(link.path) ? 'bg-dairy-blue text-dairy-green' : 'text-dairy-ink hover:bg-dairy-blue hover:text-dairy-green'}`}
                 >
                   {link.name}
                 </Link>
