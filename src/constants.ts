@@ -13,8 +13,7 @@ export const CATEGORIES: Category[] = [
 
 const buildVariantPrices = (images: string[], basePrice: number) =>
   images.map((image, index) => ({
-    image,
-    price: basePrice + index * 1500
+    image
   }));
 
 const BASE_PRODUCTS: Product[] = [
@@ -22,14 +21,10 @@ const BASE_PRODUCTS: Product[] = [
     id: 'tp-chao-sgf',
     categoryId: 'toan-phat',
     name: 'Cháo SGF',
-    price: 45000,
     image: 'assets/chaosgf/1.jpg',
     images: [
       'assets/chaosgf/1.jpg','assets/chaosgf/2.jpg','assets/chaosgf/3.jpg','assets/chaosgf/4.jpg','assets/chaosgf/5.jpg','assets/chaosgf/6.jpg','assets/chaosgf/7.jpg','assets/chaosgf/8.jpg','assets/chaosgf/9.jpg','assets/chaosgf/10.jpg','assets/chaosgf/11.jpg','assets/chaosgf/12.jpg','assets/chaosgf/13.jpg','assets/chaosgf/14.jpg','assets/chaosgf/15.jpg','assets/chaosgf/16.jpg','assets/chaosgf/17.jpg','assets/chaosgf/18.jpg','assets/chaosgf/19.jpg','assets/chaosgf/20.jpg','assets/chaosgf/21.jpg','assets/chaosgf/22.jpg','assets/chaosgf/23.jpg','assets/chaosgf/24.jpg'
     ],
-    variantPrices: buildVariantPrices([
-      'assets/chaosgf/1.jpg','assets/chaosgf/2.jpg','assets/chaosgf/3.jpg','assets/chaosgf/4.jpg','assets/chaosgf/5.jpg','assets/chaosgf/6.jpg','assets/chaosgf/7.jpg','assets/chaosgf/8.jpg','assets/chaosgf/9.jpg','assets/chaosgf/10.jpg','assets/chaosgf/11.jpg','assets/chaosgf/12.jpg','assets/chaosgf/13.jpg','assets/chaosgf/14.jpg','assets/chaosgf/15.jpg','assets/chaosgf/16.jpg','assets/chaosgf/17.jpg','assets/chaosgf/18.jpg','assets/chaosgf/19.jpg','assets/chaosgf/20.jpg','assets/chaosgf/21.jpg','assets/chaosgf/22.jpg','assets/chaosgf/23.jpg','assets/chaosgf/24.jpg'
-    ], 45000),
     description: 'Cháo dinh dưỡng thơm ngon, dễ tiêu, phù hợp cho mọi lứa tuổi.'
   },
   {

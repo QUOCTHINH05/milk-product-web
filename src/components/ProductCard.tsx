@@ -44,9 +44,6 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
             {product.description}
           </p>
           <div className="flex items-center justify-between">
-            <span className="text-dairy-green font-bold">
-              {product.price.toLocaleString('vi-VN')}đ
-            </span>
             <span className="text-[10px] uppercase tracking-widest font-bold text-dairy-ink/40 group-hover:text-dairy-green transition-colors">
               Chi tiết
             </span>

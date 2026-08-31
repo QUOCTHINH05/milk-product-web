@@ -25,7 +25,6 @@ export const ProductDetailPage = () => {
   const relatedProducts = PRODUCTS.filter(p => p.categoryId === product?.categoryId && p.id !== productId).slice(0, 4);
   const images = product && (product.images && product.images.length > 0 ? product.images : [product.image]);
   const selectedImage = images?.[selectedIndex] ?? product?.image;
-  const selectedPrice = product?.variantPrices?.find((item) => item.image === selectedImage)?.price ?? product?.price ?? 0;
 
   useEffect(() => {
     if (!product) {
@@ -119,10 +118,7 @@ export const ProductDetailPage = () => {
                       {product.name}
                     </h1>
 
-                    <div className="text-2xl font-bold text-dairy-green mb-3">
-                      {selectedPrice.toLocaleString('vi-VN')}đ
-                    </div>
-
+                    
                     <p className="text-dairy-ink/60 leading-relaxed text-base font-light">
                       {product.description}. Sản phẩm được sản xuất theo quy trình khép kín, đảm bảo giữ trọn vẹn nguồn dinh dưỡng và hương vị tự nhiên nhất từ trang trại.
                     </p>
@@ -166,9 +162,7 @@ export const ProductDetailPage = () => {
                 {product.name}
               </h1>
               
-              <div className="text-3xl font-bold text-dairy-green mb-6">
-                {selectedPrice.toLocaleString('vi-VN')}đ
-              </div>
+            
               
               <p className="text-dairy-ink/60 leading-relaxed mb-8 text-lg font-light">
                 {product.description}. Sản phẩm được sản xuất theo quy trình khép kín, đảm bảo giữ trọn vẹn nguồn dinh dưỡng và hương vị tự nhiên nhất từ trang trại.

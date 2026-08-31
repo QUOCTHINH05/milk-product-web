@@ -29,15 +29,7 @@ export const HomePage = () => {
             <span className="text-dairy-green font-bold text-xs uppercase tracking-widest mb-2 block">Sản phẩm</span>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold">Tất cả sản phẩm</h2>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden sm:inline text-sm font-medium text-dairy-ink/60">{PRODUCTS.length} sản phẩm</span>
-            <Link
-              to="/admin/login"
-              className="inline-flex items-center rounded-full border border-dairy-ink/10 bg-white px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-dairy-ink transition hover:border-dairy-green hover:text-dairy-green"
-            >
-              Admin
-            </Link>
-          </div>
+          
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
