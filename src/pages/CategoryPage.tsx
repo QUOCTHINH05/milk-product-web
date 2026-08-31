@@ -1,13 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronLeft, Filter, LayoutGrid, List } from 'lucide-react';
-import { CATEGORIES } from '../constants';
+import { CATEGORIES, PRODUCTS } from '../constants';
 import { ProductCard } from '../components/ProductCard';
 
 export const CategoryPage = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const category = CATEGORIES.find(c => c.id === categoryId);
-
+  const products = PRODUCTS.filter(p => p.categoryId === categoryId);
+  
   if (!category) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center px-4">
