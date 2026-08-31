@@ -8,6 +8,8 @@ import { CategoryPage } from './pages/CategoryPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
+import { AdminLoginPage } from './pages/AdminLoginPage';
+import { AdminPage } from './pages/AdminPage';
 import { motion, AnimatePresence } from 'motion/react';
 
 // Scroll to top on route change
@@ -37,19 +39,23 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default function App() {
+  const isAdminRoute = window.location.hash.includes('/admin');
+
   return (
     <Router>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
-        <Header />
+        {!isAdminRoute && <Header />}
         <main className="flex-grow pb-16 md:pb-0">
           <Routes>
             <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
+            <Route path="/products" element={<PageWrapper><HomePage /></PageWrapper>} />
             <Route path="/category/:categoryId" element={<PageWrapper><CategoryPage /></PageWrapper>} />
             <Route path="/product/:productId" element={<PageWrapper><ProductDetailPage /></PageWrapper>} />
             <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
             <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-            {/* Fallback for other routes */}
+            <Route path="/admin/login" element={<PageWrapper><AdminLoginPage /></PageWrapper>} />
+            <Route path="/admin" element={<PageWrapper><AdminPage /></PageWrapper>} />
             <Route path="*" element={
               <div className="min-h-[60vh] flex flex-col items-center justify-center">
                 <h2 className="text-3xl font-serif font-bold mb-4">Trang đang phát triển</h2>
@@ -58,8 +64,8 @@ export default function App() {
             } />
           </Routes>
         </main>
-        <BottomNav />
-        <Footer />
+        {!isAdminRoute && <BottomNav />}
+        {!isAdminRoute && <Footer />}
       </div>
     </Router>
   );

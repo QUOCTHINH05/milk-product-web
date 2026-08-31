@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X, Milk } from 'lucide-react';
+import { Menu, X, Milk } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export const Header = () => {
@@ -50,15 +50,6 @@ export const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            <button className="p-2 text-dairy-ink/70 hover:text-dairy-green transition-colors">
-              <Search size={20} />
-            </button>
-            <button className="p-2 text-dairy-ink/70 hover:text-dairy-green transition-colors relative">
-              <ShoppingCart size={20} />
-              <span className="absolute top-0 right-0 w-4 h-4 bg-dairy-green text-white text-[10px] flex items-center justify-center rounded-full">
-                0
-              </span>
-            </button>
             <button
               className="md:hidden p-2 text-dairy-ink/70"
               onClick={() => setIsMenuOpen(!isMenuOpen)}

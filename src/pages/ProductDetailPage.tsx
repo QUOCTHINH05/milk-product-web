@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronLeft, Star, ShoppingCart, ShieldCheck, Truck, RefreshCw, Heart, Share2 } from 'lucide-react';
-import { PRODUCTS, CATEGORIES } from '../constants';
+import { getProducts, CATEGORIES } from '../constants';
 import { ProductCard } from '../components/ProductCard';
 import { useEffect, useState } from 'react';
 
@@ -10,10 +10,14 @@ export const ProductDetailPage = () => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  
+  const PRODUCTS = getProducts();
+
   const product = PRODUCTS.find(p => p.id === productId);
   const category = CATEGORIES.find(c => c.id === product?.categoryId);
   const relatedProducts = PRODUCTS.filter(p => p.categoryId === product?.categoryId && p.id !== productId).slice(0, 4);
+  const images = product && (product.images && product.images.length > 0 ? product.images : [product.image]);
+  const selectedImage = images?.[selectedIndex] ?? product?.image;
+  const selectedPrice = product?.variantPrices?.find((item) => item.image === selectedImage)?.price ?? product?.price ?? 0;
 
   useEffect(() => {
     if (!product) {
@@ -61,20 +65,63 @@ export const ProductDetailPage = () => {
             className="space-y-4"
           >
             {(() => {
-              const images = product.images && product.images.length > 0 ? product.images : [product.image];
+              const galleryImages = images ?? [product.image];
               return (
                 <>
-                  <div className="aspect-square rounded-[32px] overflow-hidden bg-white border border-dairy-ink/5">
+                  <div className="relative aspect-square rounded-[32px] overflow-hidden bg-white border border-dairy-ink/5">
                     <img
-                      src={images[selectedIndex]}
+                      src={galleryImages[selectedIndex]}
                       alt={product.name}
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
                     />
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1))}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-dairy-ink shadow-md transition hover:bg-white"
+                      aria-label="Ảnh trước"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1))}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-dairy-ink shadow-md transition hover:bg-white"
+                      aria-label="Ảnh sau"
+                    >
+                      <ChevronLeft size={20} className="rotate-180" />
+                    </button>
                   </div>
 
-                  <div className="grid grid-cols-4 gap-4">
-                    {images.slice(0, 8).map((src, i) => (
+                  <div className="lg:hidden rounded-3xl bg-white border border-dairy-ink/5 p-5 shadow-sm">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} size={14} className={i < 4 ? "fill-yellow-400 text-yellow-400" : "text-dairy-ink/10"} />
+                        ))}
+                      </div>
+                      <span className="text-xs font-bold text-dairy-ink/40 uppercase tracking-widest">
+                        4.8 (120 đánh giá)
+                      </span>
+                    </div>
+
+                    <h1 className="text-3xl font-serif font-bold text-dairy-ink mb-3 leading-tight">
+                      {product.name}
+                    </h1>
+
+                    <div className="text-2xl font-bold text-dairy-green mb-3">
+                      {selectedPrice.toLocaleString('vi-VN')}đ
+                    </div>
+
+                    <p className="text-dairy-ink/60 leading-relaxed text-base font-light">
+                      {product.description}. Sản phẩm được sản xuất theo quy trình khép kín, đảm bảo giữ trọn vẹn nguồn dinh dưỡng và hương vị tự nhiên nhất từ trang trại.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {galleryImages.map((src, i) => (
                       <div
                         key={src + i}
                         onClick={() => setSelectedIndex(i)}
@@ -93,7 +140,7 @@ export const ProductDetailPage = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col"
+            className="hidden lg:flex flex-col"
           >
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
@@ -112,7 +159,7 @@ export const ProductDetailPage = () => {
               </h1>
               
               <div className="text-3xl font-bold text-dairy-green mb-6">
-                {product.price.toLocaleString('vi-VN')}đ
+                {selectedPrice.toLocaleString('vi-VN')}đ
               </div>
               
               <p className="text-dairy-ink/60 leading-relaxed mb-8 text-lg font-light">
@@ -120,82 +167,7 @@ export const ProductDetailPage = () => {
               </p>
             </div>
 
-            {/* Purchase Options */}
-            <div className="space-y-8 mb-10">
-              <div className="hidden sm:flex items-center gap-6">
-                <div className="flex items-center border border-dairy-ink/10 rounded-full p-1 bg-white">
-                  <button 
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 flex items-center justify-center text-dairy-ink/40 hover:text-dairy-green transition-colors"
-                  >
-                    -
-                  </button>
-                  <span className="w-12 text-center font-bold">{quantity}</span>
-                  <button 
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 flex items-center justify-center text-dairy-ink/40 hover:text-dairy-green transition-colors"
-                  >
-                    +
-                  </button>
-                </div>
-                <button className="flex-1 bg-dairy-green text-white py-4 rounded-full font-bold hover:bg-dairy-ink transition-all flex items-center justify-center gap-3 shadow-lg shadow-dairy-green/20">
-                  <ShoppingCart size={20} />
-                  Thêm vào giỏ hàng
-                </button>
-                <button className="w-14 h-14 border border-dairy-ink/10 rounded-full flex items-center justify-center text-dairy-ink/40 hover:text-red-500 hover:border-red-500 transition-all">
-                  <Heart size={20} />
-                </button>
-              </div>
-
-              {/* Mobile Sticky Bar (Visible only on mobile) */}
-              <div className="sm:hidden fixed bottom-16 left-0 right-0 z-40 bg-white/90 backdrop-blur-xl border-t border-dairy-ink/5 p-4 flex items-center gap-4">
-                <div className="flex items-center border border-dairy-ink/10 rounded-full p-1 bg-white">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-8 h-8 flex items-center justify-center text-dairy-ink/40">-</button>
-                  <span className="w-8 text-center font-bold text-sm">{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} className="w-8 h-8 flex items-center justify-center text-dairy-ink/40">+</button>
-                </div>
-                <button className="flex-1 bg-dairy-green text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-2">
-                  <ShoppingCart size={18} />
-                  Thêm giỏ hàng
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-dairy-ink/5">
-                {[
-                  { icon: <ShieldCheck size={20} />, text: '100% Chính hãng' },
-                  { icon: <Truck size={20} />, text: 'Giao nhanh 2h' },
-                  { icon: <RefreshCw size={20} />, text: 'Đổi trả 7 ngày' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-xs font-semibold text-dairy-ink/60 uppercase tracking-wider">
-                    <span className="text-dairy-green">{item.icon}</span>
-                    {item.text}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Tabs / Additional Info */}
-            <div className="bg-dairy-blue/20 rounded-3xl p-6 sm:p-8">
-              <h3 className="font-serif text-xl font-bold mb-4">Thông tin dinh dưỡng</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex justify-between border-b border-dairy-ink/5 pb-2">
-                  <span className="text-dairy-ink/40">Năng lượng</span>
-                  <span className="font-bold">60 kcal</span>
-                </div>
-                <div className="flex justify-between border-b border-dairy-ink/5 pb-2">
-                  <span className="text-dairy-ink/40">Chất béo</span>
-                  <span className="font-bold">3.3 g</span>
-                </div>
-                <div className="flex justify-between border-b border-dairy-ink/5 pb-2">
-                  <span className="text-dairy-ink/40">Chất đạm</span>
-                  <span className="font-bold">3.0 g</span>
-                </div>
-                <div className="flex justify-between border-b border-dairy-ink/5 pb-2">
-                  <span className="text-dairy-ink/40">Canxi</span>
-                  <span className="font-bold">110 mg</span>
-                </div>
-              </div>
-            </div>
+            
           </motion.div>
         </div>
       </section>

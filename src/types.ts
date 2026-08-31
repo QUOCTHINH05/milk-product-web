@@ -6,6 +6,11 @@ export interface Category {
   rating: number;
 }
 
+export interface ProductImagePrice {
+  image: string;
+  price: number;
+}
+
 export interface Product {
   id: string;
   categoryId: string;
@@ -13,5 +18,6 @@ export interface Product {
   price: number;
   image: string;
   images?: string[];
+  variantPrices?: ProductImagePrice[];
   description: string;
 }

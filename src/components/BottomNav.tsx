@@ -1,4 +1,4 @@
-import { Home, LayoutGrid, ShoppingBag, Mail } from 'lucide-react';
+import { Home, LayoutGrid, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 
@@ -8,7 +8,6 @@ export const BottomNav = () => {
   const navItems = [
     { icon: <Home size={22} />, label: 'Trang chủ', path: '/' },
     { icon: <LayoutGrid size={22} />, label: 'Danh mục', path: '/category/toan-phat' },
-    { icon: <ShoppingBag size={22} />, label: 'Giỏ hàng', path: '/cart' },
     { icon: <Mail size={22} />, label: 'Liên hệ', path: '/contact' },
   ];
 

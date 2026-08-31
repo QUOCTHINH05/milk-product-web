@@ -28,16 +28,16 @@ export const Contact = () => {
             <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tin nhắn" className="w-full p-3 border rounded-lg h-32" />
             <div className="flex items-center justify-between">
               <button type="submit" className="px-6 py-3 bg-dairy-green text-white rounded-full font-bold">Gửi tin</button>
-              <span className="text-sm text-dairy-ink/60">Hoặc gọi ngay: <strong className="text-dairy-ink">1900 1234</strong></span>
+              <span className="text-sm text-dairy-ink/60">Hoặc gọi ngay: <strong className="text-dairy-ink">03 2626 0939</strong></span>
             </div>
           </form>
 
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-6 shadow-sm">
               <h3 className="font-semibold mb-3">Thông tin liên hệ</h3>
-              <p className="flex items-center gap-3 text-dairy-ink/70"><MapPin /> 123 Đường Sữa Tươi, Quận 1, TP. HCM</p>
-              <p className="flex items-center gap-3 text-dairy-ink/70"><Phone /> 1900 1234</p>
-              <p className="flex items-center gap-3 text-dairy-ink/70"><Mail /> contact@toanphat.vn</p>
+              <p className="flex items-center gap-3 text-dairy-ink/70"><MapPin /> 194, ấp Minh Nghĩa, xã Hương Mỹ, tỉnh Vĩnh Long</p>
+              <p className="flex items-center gap-3 text-dairy-ink/70"><Phone /> 03 2626 0939</p>
+              <p className="flex items-center gap-3 text-dairy-ink/70"><Mail /> toanphat.bt268@gmail.com</p>
             </div>
 
             <div className="bg-white rounded-2xl p-6 shadow-sm">

@@ -10,7 +10,13 @@ export const CATEGORIES: Category[] = [
   }
 ];
 
-export const PRODUCTS: Product[] = [
+const buildVariantPrices = (images: string[], basePrice: number) =>
+  images.map((image, index) => ({
+    image,
+    price: basePrice + index * 1500
+  }));
+
+const BASE_PRODUCTS: Product[] = [
   {
     id: 'tp-chao-sgf',
     categoryId: 'toan-phat',
@@ -20,6 +26,9 @@ export const PRODUCTS: Product[] = [
     images: [
       'assets/chaosgf/1.jpg','assets/chaosgf/2.jpg','assets/chaosgf/3.jpg','assets/chaosgf/4.jpg','assets/chaosgf/5.jpg','assets/chaosgf/6.jpg','assets/chaosgf/7.jpg','assets/chaosgf/8.jpg','assets/chaosgf/9.jpg','assets/chaosgf/10.jpg','assets/chaosgf/11.jpg','assets/chaosgf/12.jpg','assets/chaosgf/13.jpg','assets/chaosgf/14.jpg','assets/chaosgf/15.jpg','assets/chaosgf/16.jpg','assets/chaosgf/17.jpg','assets/chaosgf/18.jpg','assets/chaosgf/19.jpg','assets/chaosgf/20.jpg','assets/chaosgf/21.jpg','assets/chaosgf/22.jpg','assets/chaosgf/23.jpg','assets/chaosgf/24.jpg'
     ],
+    variantPrices: buildVariantPrices([
+      'assets/chaosgf/1.jpg','assets/chaosgf/2.jpg','assets/chaosgf/3.jpg','assets/chaosgf/4.jpg','assets/chaosgf/5.jpg','assets/chaosgf/6.jpg','assets/chaosgf/7.jpg','assets/chaosgf/8.jpg','assets/chaosgf/9.jpg','assets/chaosgf/10.jpg','assets/chaosgf/11.jpg','assets/chaosgf/12.jpg','assets/chaosgf/13.jpg','assets/chaosgf/14.jpg','assets/chaosgf/15.jpg','assets/chaosgf/16.jpg','assets/chaosgf/17.jpg','assets/chaosgf/18.jpg','assets/chaosgf/19.jpg','assets/chaosgf/20.jpg','assets/chaosgf/21.jpg','assets/chaosgf/22.jpg','assets/chaosgf/23.jpg','assets/chaosgf/24.jpg'
+    ], 45000),
     description: 'Cháo dinh dưỡng thơm ngon, dễ tiêu, phù hợp cho mọi lứa tuổi.'
   },
   {
@@ -31,6 +40,9 @@ export const PRODUCTS: Product[] = [
     images: [
       'assets/firo/1.jpg','assets/firo/2.jpg','assets/firo/3.jpg','assets/firo/4.jpg','assets/firo/5.jpg','assets/firo/6.jpg','assets/firo/7.jpg','assets/firo/8.jpg','assets/firo/9.jpg','assets/firo/10.jpg','assets/firo/11.jpg'
     ],
+    variantPrices: buildVariantPrices([
+      'assets/firo/1.jpg','assets/firo/2.jpg','assets/firo/3.jpg','assets/firo/4.jpg','assets/firo/5.jpg','assets/firo/6.jpg','assets/firo/7.jpg','assets/firo/8.jpg','assets/firo/9.jpg','assets/firo/10.jpg','assets/firo/11.jpg'
+    ], 58000),
     description: 'Sữa dinh dưỡng Firo, vị thơm, giàu canxi và vitamin.'
   },
   {
@@ -40,6 +52,7 @@ export const PRODUCTS: Product[] = [
     price: 49000,
     image: 'assets/goldenfarm/1.jpg',
     images: ['assets/goldenfarm/1.jpg','assets/goldenfarm/2.jpg','assets/goldenfarm/3.jpg','assets/goldenfarm/4.jpg'],
+    variantPrices: buildVariantPrices(['assets/goldenfarm/1.jpg','assets/goldenfarm/2.jpg','assets/goldenfarm/3.jpg','assets/goldenfarm/4.jpg'], 49000),
     description: 'Sữa tươi nguyên chất Goldfarm, nguồn dinh dưỡng tinh khiết từ trang trại.'
   },
   {
@@ -49,6 +62,7 @@ export const PRODUCTS: Product[] = [
     price: 1200000,
     image: 'assets/natonestkh/1.jpg',
     images: ['assets/natonestkh/1.jpg','assets/natonestkh/2.jpg','assets/natonestkh/3.jpg','assets/natonestkh/4.jpg','assets/natonestkh/5.jpg','assets/natonestkh/6.jpg','assets/natonestkh/7.jpg'],
+    variantPrices: buildVariantPrices(['assets/natonestkh/1.jpg','assets/natonestkh/2.jpg','assets/natonestkh/3.jpg','assets/natonestkh/4.jpg','assets/natonestkh/5.jpg','assets/natonestkh/6.jpg','assets/natonestkh/7.jpg'], 1200000),
     description: 'Yến sào đặc sản Khánh Hòa, sạch, đảm bảo chất lượng dinh dưỡng cao.'
   },
   {
@@ -58,6 +72,7 @@ export const PRODUCTS: Product[] = [
     price: 350000,
     image: 'assets/tranest/1.jpg',
     images: ['assets/tranest/1.jpg','assets/tranest/2.jpg','assets/tranest/3.jpg','assets/tranest/4.jpg','assets/tranest/5.jpg','assets/tranest/6.jpg','assets/tranest/7.jpg','assets/tranest/8.jpg','assets/tranest/9.jpg','assets/tranest/10.jpg'],
+    variantPrices: buildVariantPrices(['assets/tranest/1.jpg','assets/tranest/2.jpg','assets/tranest/3.jpg','assets/tranest/4.jpg','assets/tranest/5.jpg','assets/tranest/6.jpg','assets/tranest/7.jpg','assets/tranest/8.jpg','assets/tranest/9.jpg','assets/tranest/10.jpg'], 350000),
     description: 'Sản phẩm Tranest chất lượng cao, phù hợp làm quà tặng và sử dụng hằng ngày.'
   },
   {
@@ -67,6 +82,7 @@ export const PRODUCTS: Product[] = [
     price: 1350000,
     image: 'assets/yenmykhanh/1.jpg',
     images: ['assets/yenmykhanh/1.jpg','assets/yenmykhanh/2.jpg','assets/yenmykhanh/3.jpg','assets/yenmykhanh/4.jpg','assets/yenmykhanh/5.jpg','assets/yenmykhanh/6.jpg','assets/yenmykhanh/7.jpg','assets/yenmykhanh/8.jpg','assets/yenmykhanh/9.jpg','assets/yenmykhanh/10.jpg','assets/yenmykhanh/11.jpg','assets/yenmykhanh/12.jpg'],
+    variantPrices: buildVariantPrices(['assets/yenmykhanh/1.jpg','assets/yenmykhanh/2.jpg','assets/yenmykhanh/3.jpg','assets/yenmykhanh/4.jpg','assets/yenmykhanh/5.jpg','assets/yenmykhanh/6.jpg','assets/yenmykhanh/7.jpg','assets/yenmykhanh/8.jpg','assets/yenmykhanh/9.jpg','assets/yenmykhanh/10.jpg','assets/yenmykhanh/11.jpg','assets/yenmykhanh/12.jpg'], 1350000),
     description: 'Yến sào Mỹ Khánh cao cấp, hương vị tự nhiên, giàu protein và khoáng chất.'
   },
   {
@@ -76,6 +92,7 @@ export const PRODUCTS: Product[] = [
     price: 220000,
     image: 'assets/takazumi/1.jpg',
     images: ['assets/takazumi/1.jpg','assets/takazumi/2.jpg','assets/takazumi/3.jpg','assets/takazumi/4.jpg','assets/takazumi/5.jpg','assets/takazumi/6.jpg','assets/takazumi/7.jpg','assets/takazumi/8.jpg','assets/takazumi/9.jpg','assets/takazumi/10.jpg','assets/takazumi/11.jpg','assets/takazumi/12.jpg','assets/takazumi/13.jpg'],
+    variantPrices: buildVariantPrices(['assets/takazumi/1.jpg','assets/takazumi/2.jpg','assets/takazumi/3.jpg','assets/takazumi/4.jpg','assets/takazumi/5.jpg','assets/takazumi/6.jpg','assets/takazumi/7.jpg','assets/takazumi/8.jpg','assets/takazumi/9.jpg','assets/takazumi/10.jpg','assets/takazumi/11.jpg','assets/takazumi/12.jpg','assets/takazumi/13.jpg'], 220000),
     description: 'Tã Kazumi mềm mại, thấm hút tốt, bảo vệ làn da bé.'
   },
   {
@@ -85,6 +102,27 @@ export const PRODUCTS: Product[] = [
     price: 200000,
     image: 'assets/tayumisun/1.jpg',
     images: ['assets/tayumisun/1.jpg','assets/tayumisun/2.jpg','assets/tayumisun/3.jpg','assets/tayumisun/4.jpg','assets/tayumisun/5.jpg','assets/tayumisun/6.jpg','assets/tayumisun/7.jpg','assets/tayumisun/8.jpg'],
+    variantPrices: buildVariantPrices(['assets/tayumisun/1.jpg','assets/tayumisun/2.jpg','assets/tayumisun/3.jpg','assets/tayumisun/4.jpg','assets/tayumisun/5.jpg','assets/tayumisun/6.jpg','assets/tayumisun/7.jpg','assets/tayumisun/8.jpg'], 200000),
     description: 'Tã Yumisun thiết kế ôm vừa vặn, an toàn cho bé.'
   }
 ];
+
+export const getProducts = (): Product[] => {
+  if (typeof window === 'undefined') {
+    return BASE_PRODUCTS;
+  }
+
+  const savedProducts = window.localStorage.getItem('toanphat_products');
+  if (!savedProducts) {
+    return BASE_PRODUCTS;
+  }
+
+  try {
+    const parsedProducts = JSON.parse(savedProducts) as Product[];
+    return Array.isArray(parsedProducts) && parsedProducts.length > 0 ? parsedProducts : BASE_PRODUCTS;
+  } catch {
+    return BASE_PRODUCTS;
+  }
+};
+
+export const PRODUCTS = getProducts();
