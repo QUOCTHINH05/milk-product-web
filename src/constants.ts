@@ -1,4 +1,5 @@
 import { Category, Product } from './types';
+import { fetchProductsFromSupabase, saveProductsToSupabase, readProductsFromLocalStorage } from './services/supabaseProducts';
 
 export const CATEGORIES: Category[] = [
   {
@@ -108,21 +109,15 @@ const BASE_PRODUCTS: Product[] = [
 ];
 
 export const getProducts = (): Product[] => {
-  if (typeof window === 'undefined') {
-    return BASE_PRODUCTS;
-  }
+  return readProductsFromLocalStorage(BASE_PRODUCTS);
+};
 
-  const savedProducts = window.localStorage.getItem('toanphat_products');
-  if (!savedProducts) {
-    return BASE_PRODUCTS;
-  }
+export const saveProducts = async (products: Product[]) => {
+  return saveProductsToSupabase(products);
+};
 
-  try {
-    const parsedProducts = JSON.parse(savedProducts) as Product[];
-    return Array.isArray(parsedProducts) && parsedProducts.length > 0 ? parsedProducts : BASE_PRODUCTS;
-  } catch {
-    return BASE_PRODUCTS;
-  }
+export const fetchProducts = async (): Promise<Product[]> => {
+  return fetchProductsFromSupabase(BASE_PRODUCTS);
 };
 
 export const PRODUCTS = getProducts();

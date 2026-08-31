@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronLeft, Star, ShoppingCart, ShieldCheck, Truck, RefreshCw, Heart, Share2 } from 'lucide-react';
-import { getProducts, CATEGORIES } from '../constants';
+import { getProducts, CATEGORIES, fetchProducts } from '../constants';
 import { ProductCard } from '../components/ProductCard';
 import { useEffect, useState } from 'react';
 
@@ -10,8 +10,16 @@ export const ProductDetailPage = () => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const PRODUCTS = getProducts();
+  const [allProducts, setAllProducts] = useState(() => getProducts());
 
+  useEffect(() => {
+    // Fetch latest products from Supabase
+    fetchProducts().then((products) => {
+      setAllProducts(products);
+    });
+  }, []);
+
+  const PRODUCTS = allProducts;
   const product = PRODUCTS.find(p => p.id === productId);
   const category = CATEGORIES.find(c => c.id === product?.categoryId);
   const relatedProducts = PRODUCTS.filter(p => p.categoryId === product?.categoryId && p.id !== productId).slice(0, 4);

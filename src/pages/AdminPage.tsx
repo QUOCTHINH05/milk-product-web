@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getProducts } from '../constants';
+import { fetchProducts, getProducts, saveProducts } from '../constants';
+import { Check, AlertCircle } from 'lucide-react';
 
 const ADMIN_SESSION_KEY = 'toanphat_admin_authenticated';
+
+type SaveStatus = 'idle' | 'saving' | 'success' | 'error';
 
 const getVariantPrices = (product: ReturnType<typeof getProducts>[number]) => {
   if (product.variantPrices && product.variantPrices.length > 0) {
@@ -19,16 +22,37 @@ const getVariantPrices = (product: ReturnType<typeof getProducts>[number]) => {
 export const AdminPage = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState(() => getProducts());
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem(ADMIN_SESSION_KEY) === 'true';
     if (!isLoggedIn) {
       navigate('/admin/login', { replace: true });
+      return;
     }
+
+    fetchProducts().then((nextProducts) => {
+      setProducts(nextProducts);
+    });
   }, [navigate]);
 
   useEffect(() => {
-    localStorage.setItem('toanphat_products', JSON.stringify(products));
+    if (products.length === 0) return;
+
+    const timer = setTimeout(() => {
+      setSaveStatus('saving');
+      saveProducts(products)
+        .then((success) => {
+          setSaveStatus(success ? 'success' : 'error');
+          setTimeout(() => setSaveStatus('idle'), 2000);
+        })
+        .catch(() => {
+          setSaveStatus('error');
+          setTimeout(() => setSaveStatus('idle'), 2000);
+        });
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [products]);
 
   const totalValue = useMemo(
@@ -71,13 +95,34 @@ export const AdminPage = () => {
             <h1 className="mt-2 font-serif text-3xl font-bold text-dairy-ink">Quản lý giá sản phẩm</h1>
           </div>
 
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="rounded-full border border-dairy-ink/10 px-5 py-2 font-semibold text-dairy-ink transition hover:border-dairy-green hover:text-dairy-green"
-          >
-            Đăng xuất
-          </button>
+          <div className="flex items-center gap-3">
+            {saveStatus === 'saving' && (
+              <div className="flex items-center gap-2 rounded-full bg-dairy-blue/20 px-4 py-2">
+                <div className="h-2 w-2 animate-pulse rounded-full bg-dairy-green" />
+                <span className="text-sm font-semibold text-dairy-ink">Đang lưu...</span>
+              </div>
+            )}
+            {saveStatus === 'success' && (
+              <div className="flex items-center gap-2 rounded-full bg-green-100 px-4 py-2">
+                <Check size={18} className="text-green-600" />
+                <span className="text-sm font-semibold text-green-600">Đã lưu</span>
+              </div>
+            )}
+            {saveStatus === 'error' && (
+              <div className="flex items-center gap-2 rounded-full bg-red-100 px-4 py-2">
+                <AlertCircle size={18} className="text-red-600" />
+                <span className="text-sm font-semibold text-red-600">Lỗi lưu</span>
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="rounded-full border border-dairy-ink/10 px-5 py-2 font-semibold text-dairy-ink transition hover:border-dairy-green hover:text-dairy-green"
+            >
+              Đăng xuất
+            </button>
+          </div>
         </div>
 
         <div className="mb-8 grid gap-4 md:grid-cols-3">
