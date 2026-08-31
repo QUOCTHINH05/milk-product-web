@@ -1,9 +1,15 @@
 import type { Product } from '../types';
-import { supabase } from './supabaseClient';
+import { getSupabaseClient } from './supabaseClient';
 
 const PRODUCT_STORAGE_KEY = 'toanphat_products';
 
 export const fetchProductsFromSupabase = async (fallback: Product[]): Promise<Product[]> => {
+  const supabase = getSupabaseClient();
+  
+  if (!supabase) {
+    return readProductsFromLocalStorage(fallback);
+  }
+
   try {
     const { data, error } = await supabase
       .from('products')
@@ -32,13 +38,19 @@ export const fetchProductsFromSupabase = async (fallback: Product[]): Promise<Pr
 };
 
 export const saveProductsToSupabase = async (products: Product[]): Promise<boolean> => {
+  const supabase = getSupabaseClient();
+
   try {
     // Save to local cache first
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(PRODUCT_STORAGE_KEY, JSON.stringify(products));
     }
 
-    // Try to sync to Supabase
+    // Try to sync to Supabase if configured
+    if (!supabase) {
+      return true; // Return success since local save worked
+    }
+
     const { error } = await supabase
       .from('products')
       .update({ data: products, updated_at: new Date().toISOString() })
