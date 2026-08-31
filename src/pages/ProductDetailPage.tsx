@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronLeft, Star, ShoppingCart, ShieldCheck, Truck, RefreshCw, Heart, Share2 } from 'lucide-react';
-import { getProducts, CATEGORIES, fetchProducts } from '../constants';
+import { PRODUCTS, CATEGORIES } from '../constants';
 import { ProductCard } from '../components/ProductCard';
 import { useEffect, useState } from 'react';
 
@@ -10,21 +10,10 @@ export const ProductDetailPage = () => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [allProducts, setAllProducts] = useState(() => getProducts());
-
-  useEffect(() => {
-    // Fetch latest products from Supabase
-    fetchProducts().then((products) => {
-      setAllProducts(products);
-    });
-  }, []);
-
-  const PRODUCTS = allProducts;
+  
   const product = PRODUCTS.find(p => p.id === productId);
   const category = CATEGORIES.find(c => c.id === product?.categoryId);
   const relatedProducts = PRODUCTS.filter(p => p.categoryId === product?.categoryId && p.id !== productId).slice(0, 4);
-  const images = product && (product.images && product.images.length > 0 ? product.images : [product.image]);
-  const selectedImage = images?.[selectedIndex] ?? product?.image;
 
   useEffect(() => {
     if (!product) {
@@ -72,12 +61,12 @@ export const ProductDetailPage = () => {
             className="space-y-4"
           >
             {(() => {
-              const galleryImages = images ?? [product.image];
+              const images = product.images && product.images.length > 0 ? product.images : [product.image];
               return (
                 <>
                   <div className="relative aspect-square rounded-[32px] overflow-hidden bg-white border border-dairy-ink/5">
                     <img
-                      src={galleryImages[selectedIndex]}
+                      src={images[selectedIndex]}
                       alt={product.name}
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
@@ -85,7 +74,7 @@ export const ProductDetailPage = () => {
 
                     <button
                       type="button"
-                      onClick={() => setSelectedIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1))}
+                      onClick={() => setSelectedIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
                       className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-dairy-ink shadow-md transition hover:bg-white"
                       aria-label="Ảnh trước"
                     >
@@ -94,7 +83,7 @@ export const ProductDetailPage = () => {
 
                     <button
                       type="button"
-                      onClick={() => setSelectedIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1))}
+                      onClick={() => setSelectedIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
                       className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-dairy-ink shadow-md transition hover:bg-white"
                       aria-label="Ảnh sau"
                     >
@@ -117,7 +106,6 @@ export const ProductDetailPage = () => {
                     <h1 className="text-3xl font-serif font-bold text-dairy-ink mb-3 leading-tight">
                       {product.name}
                     </h1>
-
                     
                     <p className="text-dairy-ink/60 leading-relaxed text-base font-light">
                       {product.description}. Sản phẩm được sản xuất theo quy trình khép kín, đảm bảo giữ trọn vẹn nguồn dinh dưỡng và hương vị tự nhiên nhất từ trang trại.
@@ -125,7 +113,7 @@ export const ProductDetailPage = () => {
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {galleryImages.map((src, i) => (
+                    {images.map((src, i) => (
                       <div
                         key={src + i}
                         onClick={() => setSelectedIndex(i)}
@@ -162,14 +150,11 @@ export const ProductDetailPage = () => {
                 {product.name}
               </h1>
               
-            
-              
               <p className="text-dairy-ink/60 leading-relaxed mb-8 text-lg font-light">
                 {product.description}. Sản phẩm được sản xuất theo quy trình khép kín, đảm bảo giữ trọn vẹn nguồn dinh dưỡng và hương vị tự nhiên nhất từ trang trại.
               </p>
             </div>
 
-            
           </motion.div>
         </div>
       </section>

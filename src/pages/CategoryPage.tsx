@@ -1,13 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronLeft, Filter, LayoutGrid, List } from 'lucide-react';
-import { CATEGORIES, getProducts } from '../constants';
+import { CATEGORIES } from '../constants';
 import { ProductCard } from '../components/ProductCard';
 
 export const CategoryPage = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const category = CATEGORIES.find(c => c.id === categoryId);
-  const products = getProducts().filter(p => p.categoryId === categoryId);
 
   if (!category) {
     return (
